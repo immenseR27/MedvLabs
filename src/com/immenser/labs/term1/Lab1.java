@@ -16,6 +16,8 @@ public class Lab1
         System.out.println("Input word length");
         int L = sc.nextInt();   //Ввод длины слова
 
+        sc.close();
+
         Random r = new Random();    //Объект r класса Random
 
         StringBuilder s = new StringBuilder();  //Пустая строка

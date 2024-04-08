@@ -32,6 +32,7 @@ public class Lab2 {
                 else
                 {text1[i]=s.charAt(r%s.length()-(s.length()-s.indexOf(text1[i])-1));}}
                 System.out.println(text1);}
+            sc.close();
 
             if (way==2) //побитовое шифрование
             {//String key = "СЕКРЕТ";
