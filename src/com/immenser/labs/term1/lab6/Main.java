@@ -1,9 +1,9 @@
-package com.immenser.labs.term1;
+package com.immenser.labs.term1.lab6;
 
 import java.util.Scanner;
 import java.util.Random;
 
-public class Lab6 {
+public class Main {
     public static void main(String[] args) {
 
         Scanner cs = new Scanner(System.in);
@@ -11,7 +11,7 @@ public class Lab6 {
 
         System.out.print("Number of printers: ");  //заполнение массива принтеров
         int pNumber = cs.nextInt();
-        Printer2[] printers = new Printer2[pNumber];
+        Printer[] printers = new Printer[pNumber];
         for (int i = 0; i < pNumber; i++) {
             int price = rand.nextInt(5000) + 5000;
             int year = rand.nextInt(20) + 2000;
@@ -20,26 +20,26 @@ public class Lab6 {
             color[1] = "cf";
             int col = rand.nextInt(2);
             if (col == 0) {
-                printers[i] = new Printer2(price, year, color[0]);}
-            else {printers[i] = new Printer2(price, year, color[1]);}
+                printers[i] = new Printer(price, year, color[0]);}
+            else {printers[i] = new Printer(price, year, color[1]);}
         }
 
         System.out.print("Number of monitors: ");  //заполнение массива мониторов
         int m_number = cs.nextInt();
         System.out.println();
-        Monitor2[] monitors = new Monitor2[m_number];
+        Monitor[] monitors = new Monitor[m_number];
         for (int i = 0; i < m_number; i++) {
             int price = rand.nextInt(20000) + 5000;
             int year = rand.nextInt(20) + 2000;
             int size = rand.nextInt(20) + 25;
-            monitors[i] = new Monitor2(price, year, size);
+            monitors[i] = new Monitor(price, year, size);
         }
 
         int minPrice = Math.min(minPrice("PRINTER", printers), minPrice("MONITOR", monitors));  //определение минимальной цены среди периферийных устройств
         System.out.println("min_price: "+minPrice);
     }
 
-    public static int minPrice(String name, PeripheralUnit2[] units) {
+    public static int minPrice(String name, PeripheralUnit[] units) {
         int minPrice = units[0].getPrice();
         for (int i=0; i<units.length; i++)
         {
@@ -62,12 +62,12 @@ interface PeripheralUnitInterface  //интерфейс периферийных
     void showAddParam();
 }
 
-class PeripheralUnit2 implements PeripheralUnitInterface //класс периферийных устройств
+class PeripheralUnit implements PeripheralUnitInterface //класс периферийных устройств
 {
     protected int price;
     protected int year;
 
-    public PeripheralUnit2(int price, int year)   //конструктор
+    public PeripheralUnit(int price, int year)   //конструктор
     {
         this.price=price;
         this.year=year;
@@ -85,11 +85,11 @@ class PeripheralUnit2 implements PeripheralUnitInterface //класс периф
     public void showAddParam() {}
 }
 
-class Printer2 extends PeripheralUnit2 //класс принтеров
+class Printer extends PeripheralUnit //класс принтеров
 {
     private String color;
 
-    public Printer2(int price, int year, String color)	//конструктор
+    public Printer(int price, int year, String color)	//конструктор
     {
         super(price, year);
         this.color=color;
@@ -99,11 +99,11 @@ class Printer2 extends PeripheralUnit2 //класс принтеров
     {System.out.println("color: "+color);}
 }
 
-class Monitor2 extends PeripheralUnit2 //класс мониторов
+class Monitor extends PeripheralUnit //класс мониторов
 {
     private int size;
 
-    public Monitor2(int price, int year, int size) //конструктор
+    public Monitor(int price, int year, int size) //конструктор
     {
         super(price, year);
         this.size=size;
